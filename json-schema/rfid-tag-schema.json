@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rfid/main/json-schema/rfid-tag-schema.json",
+  "title": "RFID Tag",
+  "description": "Schema representing an RFID tag read from a reader, including EPC, RSSI, and metadata",
+  "type": "object",
+  "properties": {
+    "epc": {
+      "type": "string",
+      "description": "Electronic Product Code in hex or URN format",
+      "example": "E280116060000204551400B5"
+    },
+    "epcUrn": {
+      "type": "string",
+      "description": "EPC in URN form per GS1 Tag Data Standard",
+      "example": "urn:epc:id:sgtin:0614141.107346.2017"
+    },
+    "tidBank": {
+      "type": "string",
+      "description": "Tag Identifier memory bank (unique per chip)"
+    },
+    "rssi": {
+      "type": "number",
+      "description": "Received Signal Strength Indicator in dBm"
+    },
+    "phase": {
+      "type": "number",
+      "description": "Signal phase in degrees"
+    },
+    "doppler": {
+      "type": "number",
+      "description": "Doppler shift frequency in Hz"
+    },
+    "antennaId": {
+      "type": "integer",
+      "description": "Antenna port ID on the reader that detected the tag"
+    },
+    "readerSerial": {
+      "type": "string",
+      "description": "Serial number of the RFID reader"
+    },
+    "readerHostname": {
+      "type": "string",
+      "description": "Hostname or IP of the RFID reader"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time the tag was read"
+    },
+    "tagType": {
+      "type": "string",
+      "enum": ["UHF EPC Gen2", "HF ISO 15693", "HF ISO 14443A", "HF ISO 14443B", "LF 125kHz", "LF 134.2kHz"],
+      "description": "RFID tag air interface protocol"
+    },
+    "peakRssi": {
+      "type": "number",
+      "description": "Peak RSSI across multiple reads"
+    },
+    "readCount": {
+      "type": "integer",
+      "description": "Number of times this tag was read in a session"
+    }
+  },
+  "required": ["epc", "timestamp"]
+}

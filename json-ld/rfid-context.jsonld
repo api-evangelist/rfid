@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "epcis": "https://ref.gs1.org/standards/epcis/",
+    "cbv": "https://ref.gs1.org/cbv/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rfid": "https://www.rfidjournal.com/vocab/",
+
+    "EPCISEvent": "epcis:EPCISEvent",
+    "ObjectEvent": "epcis:ObjectEvent",
+    "AggregationEvent": "epcis:AggregationEvent",
+    "TransactionEvent": "epcis:TransactionEvent",
+    "TransformationEvent": "epcis:TransformationEvent",
+    "AssociationEvent": "epcis:AssociationEvent",
+
+    "eventTime": {
+      "@id": "epcis:eventTime",
+      "@type": "xsd:dateTime"
+    },
+    "eventTimeZoneOffset": "epcis:eventTimeZoneOffset",
+    "epcList": "epcis:epcList",
+    "action": "epcis:action",
+    "bizStep": "epcis:bizStep",
+    "disposition": "epcis:disposition",
+    "readPoint": "epcis:readPoint",
+    "bizLocation": "epcis:bizLocation",
+    "bizTransactionList": "epcis:bizTransactionList",
+    "sensorElementList": "epcis:sensorElementList",
+
+    "epc": "rfid:epc",
+    "epcUrn": "rfid:epcUrn",
+    "rssi": "rfid:rssi",
+    "antennaId": "rfid:antennaId",
+    "readerSerial": "rfid:readerSerial",
+    "timestamp": "schema:dateCreated",
+    "tagType": "rfid:tagType",
+
+    "EPC": "rfid:EPC",
+    "SGTIN": "rfid:SGTIN",
+    "SSCC": "rfid:SSCC",
+    "SGLN": "rfid:SGLN",
+    "GLN": "rfid:GLN"
+  }
+}

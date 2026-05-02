@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/rfid/main/json-schema/rfid-epc-event-schema.json",
+  "title": "RFID EPC EPCIS Event",
+  "description": "An EPCIS 2.0 event capturing the state or movement of RFID-tagged objects in a supply chain",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "ObjectEvent",
+        "AggregationEvent",
+        "TransactionEvent",
+        "TransformationEvent",
+        "AssociationEvent"
+      ],
+      "description": "EPCIS event type"
+    },
+    "eventTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the event occurred"
+    },
+    "eventTimeZoneOffset": {
+      "type": "string",
+      "pattern": "^[+-]\\d{2}:\\d{2}$",
+      "description": "Time zone offset of the event (e.g., +00:00)"
+    },
+    "epcList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Electronic Product Code in URN format (e.g., urn:epc:id:sgtin:0614141.107346.2017)"
+      },
+      "description": "List of EPCs involved in the event"
+    },
+    "action": {
+      "type": "string",
+      "enum": ["ADD", "OBSERVE", "DELETE"],
+      "description": "The action taken on the EPCs at this event"
+    },
+    "bizStep": {
+      "type": "string",
+      "description": "Business step URI indicating the business process step (CBV vocabulary)",
+      "examples": [
+        "urn:epcglobal:cbv:bizstep:shipping",
+        "urn:epcglobal:cbv:bizstep:receiving",
+        "urn:epcglobal:cbv:bizstep:stocking",
+        "urn:epcglobal:cbv:bizstep:pos"
+      ]
+    },
+    "disposition": {
+      "type": "string",
+      "description": "Disposition URI indicating the status of the objects (CBV vocabulary)",
+      "examples": [
+        "urn:epcglobal:cbv:disp:in_transit",
+        "urn:epcglobal:cbv:disp:in_progress",
+        "urn:epcglobal:cbv:disp:sellable_accessible"
+      ]
+    },
+    "readPoint": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "URI identifying the specific physical read point"
+        }
+      },
+      "required": ["id"]
+    },
+    "bizLocation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "URI identifying the business location (GLN or custom URI)"
+        }
+      },
+      "required": ["id"]
+    },
+    "bizTransactionList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "bizTransaction": { "type": "string" }
+        }
+      }
+    },
+    "sensorElementList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "Sensor data (temperature, humidity, etc.) associated with the event"
+      }
+    }
+  },
+  "required": ["type", "eventTime", "action"]
+}

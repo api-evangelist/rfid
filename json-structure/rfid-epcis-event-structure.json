@@ -1,0 +1,18 @@
+{
+  "title": "EPCIS Event Structure",
+  "description": "Field documentation for GS1 EPCIS 2.0 event objects used in RFID supply chain traceability",
+  "type": "object",
+  "fields": [
+    { "name": "type", "type": "string", "required": true, "description": "Event type: ObjectEvent, AggregationEvent, TransactionEvent, TransformationEvent, AssociationEvent" },
+    { "name": "eventTime", "type": "string", "format": "date-time", "required": true, "description": "ISO 8601 timestamp when event occurred" },
+    { "name": "eventTimeZoneOffset", "type": "string", "required": false, "description": "Time zone offset (e.g., +00:00)" },
+    { "name": "epcList", "type": "array", "required": false, "description": "EPCs in URN format (urn:epc:id:sgtin:...)" },
+    { "name": "action", "type": "string", "required": true, "description": "ADD, OBSERVE, or DELETE" },
+    { "name": "bizStep", "type": "string", "required": false, "description": "Business step URI from CBV vocabulary" },
+    { "name": "disposition", "type": "string", "required": false, "description": "Disposition URI from CBV vocabulary" },
+    { "name": "readPoint", "type": "object", "required": false, "description": "Specific physical read location (with id URI)" },
+    { "name": "bizLocation", "type": "object", "required": false, "description": "Business location GLN (with id URI)" },
+    { "name": "bizTransactionList", "type": "array", "required": false, "description": "Associated business transactions (PO, ASN, invoice)" },
+    { "name": "sensorElementList", "type": "array", "required": false, "description": "Environmental sensor readings associated with the event" }
+  ]
+}

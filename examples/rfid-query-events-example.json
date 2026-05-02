@@ -1,0 +1,69 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://epcis.example.com/epcis/events",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+      "GS1-EPCIS-Version": "2.0"
+    },
+    "queryParameters": {
+      "EQ_EPC": "urn:epc:id:sgtin:0614141.107346.2017",
+      "GE_eventTime": "2026-05-01T00:00:00Z",
+      "LT_eventTime": "2026-05-03T00:00:00Z",
+      "maxEventCount": "10"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "GS1-EPCIS-Version": "2.0",
+      "GS1-Next-Page-Token": null
+    },
+    "body": {
+      "@context": [
+        "https://ref.gs1.org/standards/epcis/epcis-context.jsonld"
+      ],
+      "type": "EPCISDocument",
+      "schemaVersion": "2.0",
+      "creationDate": "2026-05-02T14:05:00Z",
+      "epcisBody": {
+        "eventList": [
+          {
+            "type": "ObjectEvent",
+            "eventTime": "2026-05-02T13:45:00Z",
+            "eventTimeZoneOffset": "+00:00",
+            "epcList": [
+              "urn:epc:id:sgtin:0614141.107346.2017"
+            ],
+            "action": "OBSERVE",
+            "bizStep": "urn:epcglobal:cbv:bizstep:receiving",
+            "disposition": "urn:epcglobal:cbv:disp:in_progress",
+            "readPoint": {
+              "id": "urn:epc:id:sgln:0614141.00729.dock-door-3"
+            },
+            "bizLocation": {
+              "id": "urn:epc:id:sgln:0614141.00729.0"
+            }
+          },
+          {
+            "type": "ObjectEvent",
+            "eventTime": "2026-05-02T09:00:00Z",
+            "eventTimeZoneOffset": "+00:00",
+            "epcList": [
+              "urn:epc:id:sgtin:0614141.107346.2017"
+            ],
+            "action": "OBSERVE",
+            "bizStep": "urn:epcglobal:cbv:bizstep:shipping",
+            "disposition": "urn:epcglobal:cbv:disp:in_transit",
+            "readPoint": {
+              "id": "urn:epc:id:sgln:0614141.00450.shipping"
+            },
+            "bizLocation": {
+              "id": "urn:epc:id:sgln:0614141.00450.0"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

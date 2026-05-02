@@ -1,0 +1,181 @@
+vocabulary:
+  name: RFID Technology Vocabulary
+  description: >-
+    Terminology and concepts for Radio-Frequency Identification (RFID) technology
+    covering hardware, standards, software, and supply chain applications.
+  version: "1.0.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+terms:
+  - term: RFID
+    definition: >-
+      Radio-Frequency Identification. A wireless technology that uses
+      electromagnetic fields to automatically identify and track tags attached
+      to objects. Tags contain electronically stored information and can be
+      read without line-of-sight contact.
+
+  - term: EPC
+    definition: >-
+      Electronic Product Code. A unique identifier stored in an RFID tag,
+      standardized by GS1 to provide a global, unambiguous identifier for
+      physical objects. Encoded as a URI (e.g., urn:epc:id:sgtin:...).
+
+  - term: SGTIN
+    definition: >-
+      Serialized Global Trade Item Number. An EPC encoding scheme combining a
+      GS1 Company Prefix, Item Reference, and a unique serial number to identify
+      individual instances of a product.
+
+  - term: SSCC
+    definition: >-
+      Serial Shipping Container Code. An 18-digit GS1 identifier used to
+      uniquely identify a logistics unit (pallet, case, box) in transit.
+
+  - term: GLN
+    definition: >-
+      Global Location Number. A GS1 identifier for physical or organizational
+      locations used in bizLocation and readPoint URIs in EPCIS events.
+
+  - term: EPCIS
+    definition: >-
+      Electronic Product Code Information Services. GS1's standard for sharing
+      supply chain visibility data, capturing the what (EPC), when (timestamp),
+      where (read point and bizLocation), why (bizStep and disposition), and how
+      (sensor data) of tagged objects. EPCIS 2.0 supports JSON-LD and REST/HTTP.
+
+  - term: CBV
+    definition: >-
+      Core Business Vocabulary. GS1 standard defining the controlled vocabulary
+      for EPCIS event attributes including business steps (bizStep) and
+      dispositions.
+
+  - term: ObjectEvent
+    definition: >-
+      An EPCIS event describing the status of one or more EPCs at a specific
+      point in time, such as when items are shipped, received, or observed.
+
+  - term: AggregationEvent
+    definition: >-
+      An EPCIS event capturing the association or disaggregation of a parent
+      EPC (pallet, case) with child EPCs (cases, items).
+
+  - term: TransactionEvent
+    definition: >-
+      An EPCIS event associating EPCs with business transactions such as
+      purchase orders, advance shipping notices, or invoices.
+
+  - term: TransformationEvent
+    definition: >-
+      An EPCIS event representing the conversion of input EPCs into output EPCs,
+      used in manufacturing, kitting, and repackaging processes.
+
+  - term: bizStep
+    definition: >-
+      A CBV-defined URI indicating the business process step at which an EPCIS
+      event occurred, such as shipping, receiving, stocking, or pos.
+
+  - term: disposition
+    definition: >-
+      A CBV-defined URI indicating the current state of EPC-identified objects,
+      such as in_transit, in_progress, sellable_accessible, or destroyed.
+
+  - term: readPoint
+    definition: >-
+      The specific physical location (dock door, shelf, portal) where RFID
+      tags were read. Expressed as a URI in EPCIS events.
+
+  - term: bizLocation
+    definition: >-
+      The business facility or location (warehouse, store, factory) associated
+      with an EPCIS event. Typically expressed as a GLN.
+
+  - term: UHF EPC Gen2
+    definition: >-
+      Ultra High Frequency RFID air interface protocol (ISO 18000-63),
+      operating at 860-960 MHz. The dominant standard for supply chain and
+      retail RFID applications. Also called RAIN RFID.
+
+  - term: RAIN RFID
+    definition: >-
+      An industry alliance and brand for UHF EPC Gen2 (ISO 18000-63) RFID
+      technology, promoted by the RAIN RFID Alliance for item-level retail,
+      healthcare, and logistics tracking.
+
+  - term: HF RFID
+    definition: >-
+      High Frequency RFID, operating at 13.56 MHz (ISO 14443, ISO 15693).
+      Used for contactless payments (NFC), access control, and library books.
+
+  - term: LF RFID
+    definition: >-
+      Low Frequency RFID, operating at 125-134 kHz. Used in animal tracking,
+      access control, and some industrial applications.
+
+  - term: NFC
+    definition: >-
+      Near Field Communication. A subset of HF RFID (ISO 14443) standardized
+      for short-range (< 4 cm) device-to-device communication, used in
+      contactless payments and mobile RFID applications.
+
+  - term: RSSI
+    definition: >-
+      Received Signal Strength Indicator. A measure of the radio signal power
+      received from an RFID tag, used to estimate tag proximity and antenna
+      coverage.
+
+  - term: Fixed Reader
+    definition: >-
+      A stationary RFID reader installed at a portal, dock door, or conveyor
+      to continuously read tags passing through a defined zone.
+
+  - term: Handheld Reader
+    definition: >-
+      A portable RFID reader used for manual inventory scanning, directed
+      cycle counting, and item search operations.
+
+  - term: ISO 18000
+    definition: >-
+      A family of ISO/IEC standards defining RFID air interface protocols
+      for item management, covering multiple frequency bands and modulation
+      schemes.
+
+  - term: GS1
+    definition: >-
+      Global Standards Organization that develops and maintains RFID and supply
+      chain standards including EPC, EPCIS, SGTIN, SSCC, GLN, and CBV.
+
+categories:
+  - name: Standards
+    terms:
+      - EPC
+      - EPCIS
+      - CBV
+      - GS1
+      - ISO 18000
+      - SGTIN
+      - SSCC
+      - GLN
+
+  - name: Event Types
+    terms:
+      - ObjectEvent
+      - AggregationEvent
+      - TransactionEvent
+      - TransformationEvent
+      - bizStep
+      - disposition
+      - readPoint
+      - bizLocation
+
+  - name: Technology
+    terms:
+      - RFID
+      - UHF EPC Gen2
+      - RAIN RFID
+      - HF RFID
+      - LF RFID
+      - NFC
+      - RSSI
+      - Fixed Reader
+      - Handheld Reader

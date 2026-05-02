@@ -1,0 +1,55 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://epcis.example.com/epcis/events",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+      "Content-Type": "application/json",
+      "GS1-EPCIS-Version": "2.0"
+    },
+    "body": {
+      "@context": [
+        "https://ref.gs1.org/standards/epcis/epcis-context.jsonld"
+      ],
+      "type": "EPCISDocument",
+      "schemaVersion": "2.0",
+      "creationDate": "2026-05-02T14:00:00Z",
+      "epcisBody": {
+        "eventList": [
+          {
+            "type": "ObjectEvent",
+            "eventTime": "2026-05-02T13:45:00Z",
+            "eventTimeZoneOffset": "+00:00",
+            "epcList": [
+              "urn:epc:id:sgtin:0614141.107346.2017",
+              "urn:epc:id:sgtin:0614141.107346.2018",
+              "urn:epc:id:sgtin:0614141.107346.2019"
+            ],
+            "action": "OBSERVE",
+            "bizStep": "urn:epcglobal:cbv:bizstep:receiving",
+            "disposition": "urn:epcglobal:cbv:disp:in_progress",
+            "readPoint": {
+              "id": "urn:epc:id:sgln:0614141.00729.dock-door-3"
+            },
+            "bizLocation": {
+              "id": "urn:epc:id:sgln:0614141.00729.0"
+            },
+            "bizTransactionList": [
+              {
+                "type": "urn:epcglobal:cbv:btt:po",
+                "bizTransaction": "urn:epcglobal:cbv:bt:0614141073467:PO-2026-001"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Location": "https://epcis.example.com/epcis/events/event-uuid-12345"
+    },
+    "body": null
+  }
+}
