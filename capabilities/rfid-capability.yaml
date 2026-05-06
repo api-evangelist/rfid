@@ -1,0 +1,457 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: EPCIS 2.0 REST API
+  description: The Electronic Product Code Information Services (EPCIS) 2.0 REST API, standardized by GS1, enables capture
+    and query of supply chain visibility events associated with RFID and barcode-tagged objects. EPCIS events record the what
+    (EPC/barcode), when (timestamp), where (read point and business location), why (business step and disposition), and how
+    (sensor data) of tagged objects throughout their journey in the supply chain.
+  tags:
+  - Rfid
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: rfid
+    baseUri: https://example.com/epcis
+    description: EPCIS 2.0 REST API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{RFID_TOKEN}}'
+    resources:
+    - name: events
+      path: /events
+      operations:
+      - name: captureevents
+        method: POST
+        description: Capture EPCIS Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getevents
+        method: GET
+        description: Query EPCIS Events
+        inputParameters:
+        - name: GS1-EPCIS-Version
+          in: header
+          type: string
+        - name: eventType
+          in: query
+          type: array
+        - name: EQ_EPC
+          in: query
+          type: string
+          description: Filter by specific EPC value
+        - name: EQ_bizStep
+          in: query
+          type: string
+          description: Filter by business step URI
+        - name: EQ_disposition
+          in: query
+          type: string
+          description: Filter by disposition URI
+        - name: GE_eventTime
+          in: query
+          type: string
+          description: Events at or after this time
+        - name: LT_eventTime
+          in: query
+          type: string
+          description: Events before this time
+        - name: EQ_readPoint
+          in: query
+          type: string
+          description: Filter by read point URI
+        - name: EQ_bizLocation
+          in: query
+          type: string
+          description: Filter by business location URI
+        - name: maxEventCount
+          in: query
+          type: integer
+          description: Maximum number of events to return
+        - name: nextPageToken
+          in: query
+          type: string
+          description: Pagination token for next page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events-eventid
+      path: /events/{eventID}
+      operations:
+      - name: getevent
+        method: GET
+        description: Get Single EPCIS Event
+        inputParameters:
+        - name: eventID
+          in: path
+          type: string
+          required: true
+          description: Unique EPCIS event identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: queries
+      path: /queries
+      operations:
+      - name: createnamedquery
+        method: POST
+        description: Create Named Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getnamedqueries
+        method: GET
+        description: List Named Queries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: queries-queryname
+      path: /queries/{queryName}
+      operations:
+      - name: getnamedquery
+        method: GET
+        description: Get Named Query
+        inputParameters:
+        - name: queryName
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletenamedquery
+        method: DELETE
+        description: Delete Named Query
+        inputParameters:
+        - name: queryName
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: queries-queryname-events
+      path: /queries/{queryName}/events
+      operations:
+      - name: executenamedquery
+        method: GET
+        description: Execute Named Query
+        inputParameters:
+        - name: queryName
+          in: path
+          type: string
+          required: true
+        - name: nextPageToken
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: serviceinfo
+      path: /serviceInfo
+      operations:
+      - name: getserviceinfo
+        method: GET
+        description: Get Service Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: rfid-rest
+    description: REST adapter for EPCIS 2.0 REST API.
+    resources:
+    - path: /events
+      name: captureevents
+      operations:
+      - method: POST
+        name: captureevents
+        description: Capture EPCIS Events
+        call: rfid.captureevents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /events
+      name: getevents
+      operations:
+      - method: GET
+        name: getevents
+        description: Query EPCIS Events
+        call: rfid.getevents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /events/{eventID}
+      name: getevent
+      operations:
+      - method: GET
+        name: getevent
+        description: Get Single EPCIS Event
+        call: rfid.getevent
+        with:
+          eventID: rest.eventID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /queries
+      name: createnamedquery
+      operations:
+      - method: POST
+        name: createnamedquery
+        description: Create Named Query
+        call: rfid.createnamedquery
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /queries
+      name: getnamedqueries
+      operations:
+      - method: GET
+        name: getnamedqueries
+        description: List Named Queries
+        call: rfid.getnamedqueries
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /queries/{queryName}
+      name: getnamedquery
+      operations:
+      - method: GET
+        name: getnamedquery
+        description: Get Named Query
+        call: rfid.getnamedquery
+        with:
+          queryName: rest.queryName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /queries/{queryName}
+      name: deletenamedquery
+      operations:
+      - method: DELETE
+        name: deletenamedquery
+        description: Delete Named Query
+        call: rfid.deletenamedquery
+        with:
+          queryName: rest.queryName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /queries/{queryName}/events
+      name: executenamedquery
+      operations:
+      - method: GET
+        name: executenamedquery
+        description: Execute Named Query
+        call: rfid.executenamedquery
+        with:
+          queryName: rest.queryName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /serviceInfo
+      name: getserviceinfo
+      operations:
+      - method: GET
+        name: getserviceinfo
+        description: Get Service Information
+        call: rfid.getserviceinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: rfid-mcp
+    transport: http
+    description: MCP adapter for EPCIS 2.0 REST API for AI agent use.
+    tools:
+    - name: captureevents
+      description: Capture EPCIS Events
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rfid.captureevents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getevents
+      description: Query EPCIS Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rfid.getevents
+      with:
+        eventType: tools.eventType
+        EQ_EPC: tools.EQ_EPC
+        EQ_bizStep: tools.EQ_bizStep
+        EQ_disposition: tools.EQ_disposition
+        GE_eventTime: tools.GE_eventTime
+        LT_eventTime: tools.LT_eventTime
+        EQ_readPoint: tools.EQ_readPoint
+        EQ_bizLocation: tools.EQ_bizLocation
+        maxEventCount: tools.maxEventCount
+        nextPageToken: tools.nextPageToken
+      inputParameters:
+      - name: eventType
+        type: array
+        description: eventType
+      - name: EQ_EPC
+        type: string
+        description: Filter by specific EPC value
+      - name: EQ_bizStep
+        type: string
+        description: Filter by business step URI
+      - name: EQ_disposition
+        type: string
+        description: Filter by disposition URI
+      - name: GE_eventTime
+        type: string
+        description: Events at or after this time
+      - name: LT_eventTime
+        type: string
+        description: Events before this time
+      - name: EQ_readPoint
+        type: string
+        description: Filter by read point URI
+      - name: EQ_bizLocation
+        type: string
+        description: Filter by business location URI
+      - name: maxEventCount
+        type: integer
+        description: Maximum number of events to return
+      - name: nextPageToken
+        type: string
+        description: Pagination token for next page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getevent
+      description: Get Single EPCIS Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rfid.getevent
+      with:
+        eventID: tools.eventID
+      inputParameters:
+      - name: eventID
+        type: string
+        description: Unique EPCIS event identifier
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createnamedquery
+      description: Create Named Query
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rfid.createnamedquery
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getnamedqueries
+      description: List Named Queries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rfid.getnamedqueries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getnamedquery
+      description: Get Named Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rfid.getnamedquery
+      with:
+        queryName: tools.queryName
+      inputParameters:
+      - name: queryName
+        type: string
+        description: queryName
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletenamedquery
+      description: Delete Named Query
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rfid.deletenamedquery
+      with:
+        queryName: tools.queryName
+      inputParameters:
+      - name: queryName
+        type: string
+        description: queryName
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: executenamedquery
+      description: Execute Named Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rfid.executenamedquery
+      with:
+        queryName: tools.queryName
+        nextPageToken: tools.nextPageToken
+      inputParameters:
+      - name: queryName
+        type: string
+        description: queryName
+        required: true
+      - name: nextPageToken
+        type: string
+        description: nextPageToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getserviceinfo
+      description: Get Service Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rfid.getserviceinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    RFID_TOKEN: RFID_TOKEN
