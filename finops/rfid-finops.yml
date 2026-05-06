@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,157 +9,63 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: RFID
 providerId: rfid
-publisherName: RFID
-serviceCategory: API
+publisherName: Multiple Vendors
+serviceCategory: IoT / RFID
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - RFID
   - IoT
-  - Supply Chain
-  - Inventory Management
-  - Asset Tracking
-  - GS1
-  - EPCIS
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the RFID API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: >-
+  RFID is a multi-vendor technology category, not a single billable service. FinOps treatment
+  must be applied per underlying vendor. This artifact carries a placeholder shape.
+notes: >-
+  No unified billing model exists across the RFID ecosystem. Allocate cost per underlying
+  vendor invoice (Zebra, Impinj, GS1, ClearStream, etc.).
+sources:
+  - https://www.zebra.com/us/en/services/data-services.html
+  - https://www.impinj.com/products/platform/itemsense
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Varies by Vendor
+  billingFrequency: Varies
   billingCurrency: USD
   chargeCategories:
     - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: RFID
-  ServiceCategory: Developer Tools / API
-  ProviderName: RFID
-  PublisherName: RFID
-  InvoiceIssuerName: RFID
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceName: RFID (multi-vendor)
+  ServiceCategory: IoT / RFID
+  ProviderName: Multiple Vendors
+  PublisherName: Multiple Vendors
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: vendor_charges
+    description: Aggregate of vendor-specific RFID service charges
+    unit: varies
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Zebra Data Services for RFID
-    baseURL: https://api.zebra.com
-    tags:
-      - RFID
-      - Asset Tracking
-      - Inventory
-      - Zebra
-    serviceName: Zebra Data Services for RFID
-    serviceCategory: API
-  - name: ClearStream RFID REST API
-    baseURL: ''
-    tags:
-      - RFID
-      - Bluetooth Beacon
-      - Asset Tracking
-      - REST API
-    serviceName: ClearStream RFID REST API
-    serviceCategory: API
-  - name: Impinj ItemSense RAIN RFID API
-    baseURL: ''
-    tags:
-      - RFID
-      - RAIN RFID
-      - Retail
-      - Healthcare
-      - Impinj
-    serviceName: Impinj ItemSense RAIN RFID API
-    serviceCategory: API
-  - name: GS1 EPCIS API
-    baseURL: ''
-    tags:
-      - GS1
-      - EPCIS
-      - Supply Chain
-      - EPC
-      - Standard
-    serviceName: GS1 EPCIS API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - vendor
+      - product
+principles:
+  - name: Visibility
+    description: >-
+      Consolidate RFID vendor invoices into a single line of sight per program (Zebra, Impinj,
+      GS1, ClearStream).
+  - name: Allocation
+    description: >-
+      Tag RFID hardware and API spend to the originating warehouse, store, or supply-chain lane
+      rather than to a generic IT bucket.
+  - name: Optimization
+    description: >-
+      Negotiate volume discounts per vendor; consolidate readers and tag SKUs to reduce
+      vendor sprawl.
+  - name: Accountability
+    description: >-
+      Assign supply-chain or operations owners to each RFID vendor relationship; review tag
+      and reader unit economics quarterly.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
