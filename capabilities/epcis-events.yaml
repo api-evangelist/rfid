@@ -1,0 +1,214 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: EPCIS 2.0 REST API — Events
+  description: 'EPCIS 2.0 REST API — Events. 3 operations. Lead operation: Capture EPCIS Events. Self-contained Naftiko capability
+    covering one Rfid business surface.'
+  tags:
+  - Rfid
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RFID_API_KEY: RFID_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: epcis-events
+    baseUri: https://{host}/epcis
+    description: EPCIS 2.0 REST API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: events
+      path: /events
+      operations:
+      - name: captureevents
+        method: POST
+        description: Capture EPCIS Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getevents
+        method: GET
+        description: Query EPCIS Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: GS1-EPCIS-Version
+          in: header
+          type: string
+        - name: eventType
+          in: query
+          type: array
+        - name: EQ_EPC
+          in: query
+          type: string
+          description: Filter by specific EPC value
+        - name: EQ_bizStep
+          in: query
+          type: string
+          description: Filter by business step URI
+        - name: EQ_disposition
+          in: query
+          type: string
+          description: Filter by disposition URI
+        - name: GE_eventTime
+          in: query
+          type: string
+          description: Events at or after this time
+        - name: LT_eventTime
+          in: query
+          type: string
+          description: Events before this time
+        - name: EQ_readPoint
+          in: query
+          type: string
+          description: Filter by read point URI
+        - name: EQ_bizLocation
+          in: query
+          type: string
+          description: Filter by business location URI
+        - name: maxEventCount
+          in: query
+          type: integer
+          description: Maximum number of events to return
+        - name: nextPageToken
+          in: query
+          type: string
+          description: Pagination token for next page
+    - name: events-eventID
+      path: /events/{eventID}
+      operations:
+      - name: getevent
+        method: GET
+        description: Get Single EPCIS Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventID
+          in: path
+          type: string
+          description: Unique EPCIS event identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RFID_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: epcis-events-rest
+    port: 8080
+    description: REST adapter for EPCIS 2.0 REST API — Events. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/events
+      name: events
+      description: REST surface for events.
+      operations:
+      - method: POST
+        name: captureevents
+        description: Capture EPCIS Events
+        call: epcis-events.captureevents
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getevents
+        description: Query EPCIS Events
+        call: epcis-events.getevents
+        with:
+          GS1-EPCIS-Version: rest.GS1-EPCIS-Version
+          eventType: rest.eventType
+          EQ_EPC: rest.EQ_EPC
+          EQ_bizStep: rest.EQ_bizStep
+          EQ_disposition: rest.EQ_disposition
+          GE_eventTime: rest.GE_eventTime
+          LT_eventTime: rest.LT_eventTime
+          EQ_readPoint: rest.EQ_readPoint
+          EQ_bizLocation: rest.EQ_bizLocation
+          maxEventCount: rest.maxEventCount
+          nextPageToken: rest.nextPageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events/{eventid}
+      name: events-eventid
+      description: REST surface for events-eventID.
+      operations:
+      - method: GET
+        name: getevent
+        description: Get Single EPCIS Event
+        call: epcis-events.getevent
+        with:
+          eventID: rest.eventID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: epcis-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for EPCIS 2.0 REST API — Events. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: capture-epcis-events
+      description: Capture EPCIS Events
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: epcis-events.captureevents
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-epcis-events
+      description: Query EPCIS Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: epcis-events.getevents
+      with:
+        GS1-EPCIS-Version: tools.GS1-EPCIS-Version
+        eventType: tools.eventType
+        EQ_EPC: tools.EQ_EPC
+        EQ_bizStep: tools.EQ_bizStep
+        EQ_disposition: tools.EQ_disposition
+        GE_eventTime: tools.GE_eventTime
+        LT_eventTime: tools.LT_eventTime
+        EQ_readPoint: tools.EQ_readPoint
+        EQ_bizLocation: tools.EQ_bizLocation
+        maxEventCount: tools.maxEventCount
+        nextPageToken: tools.nextPageToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-epcis-event
+      description: Get Single EPCIS Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: epcis-events.getevent
+      with:
+        eventID: tools.eventID
+      outputParameters:
+      - type: object
+        mapping: $.
