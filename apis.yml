@@ -115,7 +115,7 @@ common:
     url: https://www.clearstreamrfid.com/
   - type: Website
     url: https://www.gs1.org/standards/epcis
-  - type: Standard
+  - type: Standards
     url: https://www.gs1.org/standards/epc-rfid-epcis-id-keys/epc-rfid-tds/1-12
 maintainers:
   - FN: Kin Lane
