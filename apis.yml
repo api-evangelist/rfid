@@ -109,6 +109,10 @@ useCases:
   - name: Access Control
     description: RFID-based building access, parking management, and visitor management
 common:
+  - type: DomainSecurity
+    url: security/rfid-domain-security.yml
+  - type: Authentication
+    url: authentication/rfid-authentication.yml
   - type: Website
     url: https://developer.zebra.com/products/rfid
   - type: Website
