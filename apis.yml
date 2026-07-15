@@ -109,6 +109,8 @@ useCases:
   - name: Access Control
     description: RFID-based building access, parking management, and visitor management
 common:
+  - type: AgenticAccess
+    url: agentic-access/rfid-agentic-access.yml
   - type: DomainSecurity
     url: security/rfid-domain-security.yml
   - type: Authentication
