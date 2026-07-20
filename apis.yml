@@ -1,5 +1,6 @@
 aid: rfid
 name: RFID
+kind: topic
 description: >-
   Radio-Frequency Identification (RFID) is an automatic identification technology that uses radio waves to read and
   capture information stored on a tag attached to an object. RFID powers supply chain visibility, inventory management,
