@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: EPCIS 2.0 REST Discovery API
+  description: The Electronic Product Code Information Services (EPCIS) 2.0 REST API, standardized by GS1, enables capture and query of supply chain visibility events associated with RFID and barcode-tagged objects. EPCIS events record the what (EPC/barcode), when (timestamp), where (read point and business location), why (business step and disposition), and how (sensor data) of tagged objects throughout their journey in the supply chain.
+  version: 2.0.0
+  contact:
+    url: https://www.gs1.org/standards/epcis
+  license:
+    name: GS1 Standards License
+    url: https://www.gs1.org/standards/epcis
+servers:
+- url: https://{host}/epcis
+  variables:
+    host:
+      default: example.com
+      description: EPCIS server host
+tags:
+- name: Discovery
+  description: EPCIS service discovery and capabilities
+paths:
+  /serviceInfo:
+    get:
+      operationId: getServiceInfo
+      summary: Get Service Information
+      description: Returns service capabilities and version information for the EPCIS endpoint including supported versions and features.
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: Service information and capabilities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
+components:
+  schemas:
+    ServiceInfo:
+      type: object
+      properties:
+        '@context':
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        epcisVersion:
+          type: string
+        epcisQueryMinVersion:
+          type: string
+        epcisQueryMaxVersion:
+          type: string
+        epcisCapture:
+          type: object
+        epcisEvents:
+          type: object
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
