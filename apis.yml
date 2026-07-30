@@ -8,7 +8,20 @@ description: >-
   Alien Technology), software platforms (ClearStream, TagMatiks, Jetstream), and open standards (GS1 EPCIS, EPC Tag Data
   Standard, ISO 18000 series).
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rfid.png
 tags:
   - RFID
   - IoT
@@ -22,69 +35,100 @@ created: '2025-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: rfid:zebra-rfid-data-services
-    name: Zebra Data Services for RFID
-    description: >-
-      Zebra Technologies provides cloud-based REST APIs for managing RFID readers, collecting tag data, and integrating
-      RFID intelligence into enterprise applications. Cloud Connect for RFID enables remote reader management and data
-      collection via REST API.
-    humanURL: https://developer.zebra.com/data-services-rfid-developer-guide
-    baseURL: https://api.zebra.com
-    tags:
-      - RFID
-      - Asset Tracking
-      - Inventory
-      - Zebra
-    properties:
-      - type: Documentation
-        url: https://developer.zebra.com/data-services-rfid-developer-guide
-      - type: Portal
-        url: https://developer.zebra.com/products/rfid
-  - aid: rfid:clearstream-rfid-api
-    name: ClearStream RFID REST API
-    description: >-
-      ClearStream provides a RESTful API for RFID and Bluetooth Beacon technology, giving developers full control of
-      RFID readers and gateways to integrate tag data into existing applications and websites.
-    humanURL: https://www.clearstreamrfid.com/software/integrate/api/
-    tags:
-      - RFID
-      - Bluetooth Beacon
-      - Asset Tracking
-      - REST API
-    properties:
-      - type: Documentation
-        url: https://www.clearstreamrfid.com/software/integrate/api/
-  - aid: rfid:impinj-itemsense-api
-    name: Impinj ItemSense RAIN RFID API
-    description: >-
-      Impinj provides APIs for RAIN RFID reader management and item location data, enabling real-time item-level
-      inventory visibility in retail, healthcare, and manufacturing environments.
-    humanURL: https://developer.impinj.com/
-    tags:
-      - RFID
-      - RAIN RFID
-      - Retail
-      - Healthcare
-      - Impinj
-    properties:
-      - type: Documentation
-        url: https://developer.impinj.com/
-  - aid: rfid:gs1-epcis-api
-    name: GS1 EPCIS API
-    description: >-
-      The Electronic Product Code Information Services (EPCIS) is GS1's standard for sharing supply chain visibility
-      data. EPCIS 2.0 supports REST/HTTP and JSON-LD for capturing and querying RFID events including Object,
-      Aggregation, Transaction, Transformation, and Association events.
-    humanURL: https://www.gs1.org/standards/epcis
-    tags:
-      - GS1
-      - EPCIS
-      - Supply Chain
-      - EPC
-      - Standard
-    properties:
-      - type: Documentation
-        url: https://www.gs1.org/standards/epcis
+- aid: rfid:zebra-rfid-data-services
+  name: Zebra Data Services for RFID
+  description: >-
+    Zebra Technologies provides cloud-based REST APIs for managing RFID readers, collecting tag data,
+    and integrating RFID intelligence into enterprise applications. Cloud Connect for RFID enables remote
+    reader management and data collection via REST API.
+  humanURL: https://developer.zebra.com/data-services-rfid-developer-guide
+  baseURL: https://api.zebra.com
+  tags:
+  - RFID
+  - Asset Tracking
+  - Inventory
+  - Zebra
+  properties:
+  - type: Documentation
+    url: https://developer.zebra.com/data-services-rfid-developer-guide
+  - type: Portal
+    url: https://developer.zebra.com/products/rfid
+- aid: rfid:clearstream-rfid-api
+  name: ClearStream RFID REST API
+  description: >-
+    ClearStream provides a RESTful API for RFID and Bluetooth Beacon technology, giving developers full
+    control of RFID readers and gateways to integrate tag data into existing applications and websites.
+  humanURL: https://www.clearstreamrfid.com/software/integrate/api/
+  tags:
+  - RFID
+  - Bluetooth Beacon
+  - Asset Tracking
+  - REST API
+  properties:
+  - type: Documentation
+    url: https://www.clearstreamrfid.com/software/integrate/api/
+- aid: rfid:impinj-itemsense-api
+  name: Impinj ItemSense RAIN RFID API
+  description: >-
+    Impinj provides APIs for RAIN RFID reader management and item location data, enabling real-time item-level
+    inventory visibility in retail, healthcare, and manufacturing environments.
+  humanURL: https://developer.impinj.com/
+  tags:
+  - RFID
+  - RAIN RFID
+  - Retail
+  - Healthcare
+  - Impinj
+  properties:
+  - type: Documentation
+    url: https://developer.impinj.com/
+- aid: rfid:gs1-epcis-api
+  name: GS1 EPCIS API
+  description: >-
+    The Electronic Product Code Information Services (EPCIS) is GS1's standard for sharing supply chain
+    visibility data. EPCIS 2.0 supports REST/HTTP and JSON-LD for capturing and querying RFID events including
+    Object, Aggregation, Transaction, Transformation, and Association events.
+  humanURL: https://www.gs1.org/standards/epcis
+  tags:
+  - GS1
+  - EPCIS
+  - Supply Chain
+  - EPC
+  - Standard
+  properties:
+  - type: Documentation
+    url: https://www.gs1.org/standards/epcis
+- aid: rfid:rfid-discovery-api
+  name: RFID Discovery API
+  description: EPCIS service discovery and capabilities
+  humanURL: https://developer.zebra.com/data-services-rfid-developer-guide
+  baseURL: https://api.zebra.com
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/rfid-discovery-api-openapi.yml
+- aid: rfid:rfid-events-api
+  name: RFID Events API
+  description: >-
+    Capture and query EPCIS events (Object, Aggregation, Transaction, Transformation, Association)
+  humanURL: https://developer.zebra.com/data-services-rfid-developer-guide
+  baseURL: https://api.zebra.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/rfid-events-api-openapi.yml
+- aid: rfid:rfid-queries-api
+  name: RFID Queries API
+  description: Named query management for subscription-based event filtering
+  humanURL: https://developer.zebra.com/data-services-rfid-developer-guide
+  baseURL: https://api.zebra.com
+  tags:
+  - Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/rfid-queries-api-openapi.yml
 features:
   - name: Tag Reading
     description: Reading and decoding EPC/ISO RFID tags at item, case, and pallet levels
