@@ -1,0 +1,18 @@
+{
+  "provider": "rfid",
+  "sources": [
+    "rfid-discovery-api-openapi.yml",
+    "rfid-events-api-openapi.yml",
+    "rfid-queries-api-openapi.yml"
+  ],
+  "outputs": [
+    "rfid-discovery-api-openapi.yml",
+    "rfid-events-api-openapi.yml",
+    "rfid-queries-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

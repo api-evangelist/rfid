@@ -1,0 +1,474 @@
+openapi: 3.0.3
+info:
+  title: EPCIS 2.0 REST API
+  description: >-
+    The Electronic Product Code Information Services (EPCIS) 2.0 REST API,
+    standardized by GS1, enables capture and query of supply chain visibility
+    events associated with RFID and barcode-tagged objects. EPCIS events record
+    the what (EPC/barcode), when (timestamp), where (read point and business
+    location), why (business step and disposition), and how (sensor data) of
+    tagged objects throughout their journey in the supply chain.
+  version: 2.0.0
+  contact:
+    url: https://www.gs1.org/standards/epcis
+  license:
+    name: GS1 Standards License
+    url: https://www.gs1.org/standards/epcis
+servers:
+  - url: https://{host}/epcis
+    variables:
+      host:
+        default: example.com
+        description: EPCIS server host
+tags:
+  - name: Events
+    description: Capture and query EPCIS events (Object, Aggregation, Transaction, Transformation, Association)
+  - name: Queries
+    description: Named query management for subscription-based event filtering
+  - name: Discovery
+    description: EPCIS service discovery and capabilities
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    EPCISEvent:
+      type: object
+      properties:
+        "@context":
+          oneOf:
+            - type: string
+            - type: array
+        type:
+          type: string
+          enum:
+            - ObjectEvent
+            - AggregationEvent
+            - TransactionEvent
+            - TransformationEvent
+            - AssociationEvent
+        eventTime:
+          type: string
+          format: date-time
+        eventTimeZoneOffset:
+          type: string
+          example: "+00:00"
+        epcList:
+          type: array
+          items:
+            type: string
+          description: List of EPCs (Electronic Product Codes) involved in the event
+        action:
+          type: string
+          enum:
+            - ADD
+            - OBSERVE
+            - DELETE
+        bizStep:
+          type: string
+          description: Business step URI (e.g., urn:epcglobal:cbv:bizstep:shipping)
+        disposition:
+          type: string
+          description: Disposition URI (e.g., urn:epcglobal:cbv:disp:in_transit)
+        readPoint:
+          type: object
+          properties:
+            id:
+              type: string
+              description: URI identifying the read point (specific location)
+        bizLocation:
+          type: object
+          properties:
+            id:
+              type: string
+              description: URI identifying the business location
+        bizTransactionList:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              bizTransaction:
+                type: string
+        sensorElementList:
+          type: array
+          items:
+            type: object
+            description: Sensor data associated with the event
+        certificationInfo:
+          type: string
+          description: Certification information for event data quality
+      required:
+        - type
+        - eventTime
+        - action
+
+    EPCISEventList:
+      type: object
+      properties:
+        "@context":
+          type: array
+        type:
+          type: string
+          default: EPCISDocument
+        schemaVersion:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+        epcisBody:
+          type: object
+          properties:
+            eventList:
+              type: array
+              items:
+                $ref: '#/components/schemas/EPCISEvent'
+
+    QueryDocument:
+      type: object
+      properties:
+        "@context":
+          type: array
+        type:
+          type: string
+          default: EPCISQueryDocument
+        schemaVersion:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+        epcisBody:
+          type: object
+          properties:
+            queryResults:
+              type: object
+
+    NamedQuery:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique name for the query
+        query:
+          type: object
+          description: Query parameters
+        subscriptionID:
+          type: string
+        reportIfEmpty:
+          type: boolean
+        initialRecordTime:
+          type: string
+          format: date-time
+
+    ServiceInfo:
+      type: object
+      properties:
+        "@context":
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        epcisVersion:
+          type: string
+        epcisQueryMinVersion:
+          type: string
+        epcisQueryMaxVersion:
+          type: string
+        epcisCapture:
+          type: object
+        epcisEvents:
+          type: object
+paths:
+  /events:
+    post:
+      operationId: captureEvents
+      summary: Capture EPCIS Events
+      description: >-
+        Capture one or more EPCIS events. Accepts ObjectEvent, AggregationEvent,
+        TransactionEvent, TransformationEvent, and AssociationEvent types.
+      tags:
+        - Events
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EPCISEventList'
+          application/xml:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Events captured successfully
+          headers:
+            Location:
+              schema:
+                type: string
+        '400':
+          description: Invalid EPCIS document
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+    get:
+      operationId: getEvents
+      summary: Query EPCIS Events
+      description: >-
+        Query EPCIS events using filter parameters. Supports filtering by EPC,
+        event type, time range, business step, disposition, and location.
+      tags:
+        - Events
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: GS1-EPCIS-Version
+          in: header
+          schema:
+            type: string
+        - name: eventType
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [ObjectEvent, AggregationEvent, TransactionEvent, TransformationEvent, AssociationEvent]
+          style: form
+          explode: false
+        - name: EQ_EPC
+          in: query
+          schema:
+            type: string
+          description: Filter by specific EPC value
+        - name: EQ_bizStep
+          in: query
+          schema:
+            type: string
+          description: Filter by business step URI
+        - name: EQ_disposition
+          in: query
+          schema:
+            type: string
+          description: Filter by disposition URI
+        - name: GE_eventTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Events at or after this time
+        - name: LT_eventTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Events before this time
+        - name: EQ_readPoint
+          in: query
+          schema:
+            type: string
+          description: Filter by read point URI
+        - name: EQ_bizLocation
+          in: query
+          schema:
+            type: string
+          description: Filter by business location URI
+        - name: maxEventCount
+          in: query
+          schema:
+            type: integer
+          description: Maximum number of events to return
+        - name: nextPageToken
+          in: query
+          schema:
+            type: string
+          description: Pagination token for next page
+      responses:
+        '200':
+          description: EPCIS events matching query criteria
+          headers:
+            GS1-EPCIS-Version:
+              schema:
+                type: string
+            GS1-Next-Page-Token:
+              schema:
+                type: string
+              description: Token to retrieve next page of results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EPCISEventList'
+        '400':
+          description: Invalid query parameters
+        '401':
+          description: Unauthorized
+
+  /events/{eventID}:
+    get:
+      operationId: getEvent
+      summary: Get Single EPCIS Event
+      description: Retrieve a specific EPCIS event by its event ID
+      tags:
+        - Events
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: eventID
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique EPCIS event identifier
+      responses:
+        '200':
+          description: EPCIS event details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EPCISEvent'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Event not found
+
+  /queries:
+    post:
+      operationId: createNamedQuery
+      summary: Create Named Query
+      description: Create a named EPCIS query for subscription-based event notification
+      tags:
+        - Queries
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NamedQuery'
+      responses:
+        '201':
+          description: Named query created
+          headers:
+            Location:
+              schema:
+                type: string
+        '400':
+          description: Invalid query definition
+        '401':
+          description: Unauthorized
+
+    get:
+      operationId: getNamedQueries
+      summary: List Named Queries
+      description: List all named queries registered for the authenticated user
+      tags:
+        - Queries
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of named queries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NamedQuery'
+        '401':
+          description: Unauthorized
+
+  /queries/{queryName}:
+    get:
+      operationId: getNamedQuery
+      summary: Get Named Query
+      description: Retrieve details of a specific named query
+      tags:
+        - Queries
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: queryName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Named query details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamedQuery'
+        '404':
+          description: Query not found
+
+    delete:
+      operationId: deleteNamedQuery
+      summary: Delete Named Query
+      description: Delete a named query and all its subscriptions
+      tags:
+        - Queries
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: queryName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Query deleted
+        '404':
+          description: Query not found
+
+  /queries/{queryName}/events:
+    get:
+      operationId: executeNamedQuery
+      summary: Execute Named Query
+      description: Execute a named query and return matching EPCIS events
+      tags:
+        - Queries
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: queryName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: nextPageToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Events matching the named query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EPCISEventList'
+        '404':
+          description: Query not found
+
+  /serviceInfo:
+    get:
+      operationId: getServiceInfo
+      summary: Get Service Information
+      description: >-
+        Returns service capabilities and version information for the EPCIS
+        endpoint including supported versions and features.
+      tags:
+        - Discovery
+      responses:
+        '200':
+          description: Service information and capabilities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
