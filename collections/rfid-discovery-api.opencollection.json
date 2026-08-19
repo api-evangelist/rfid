@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "EPCIS 2.0 REST Discovery API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Service Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/epcis/serviceInfo"
+          },
+          "docs": "Returns service capabilities and version information for the EPCIS endpoint including supported versions and features."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

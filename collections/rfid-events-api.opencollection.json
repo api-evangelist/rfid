@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "EPCIS 2.0 REST Discovery Events API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query EPCIS Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/epcis/events",
+            "headers": [
+              {
+                "name": "GS1-EPCIS-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "EQ_EPC",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific EPC value"
+              },
+              {
+                "name": "EQ_bizStep",
+                "value": "",
+                "type": "query",
+                "description": "Filter by business step URI"
+              },
+              {
+                "name": "EQ_disposition",
+                "value": "",
+                "type": "query",
+                "description": "Filter by disposition URI"
+              },
+              {
+                "name": "GE_eventTime",
+                "value": "",
+                "type": "query",
+                "description": "Events at or after this time"
+              },
+              {
+                "name": "LT_eventTime",
+                "value": "",
+                "type": "query",
+                "description": "Events before this time"
+              },
+              {
+                "name": "EQ_readPoint",
+                "value": "",
+                "type": "query",
+                "description": "Filter by read point URI"
+              },
+              {
+                "name": "EQ_bizLocation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by business location URI"
+              },
+              {
+                "name": "maxEventCount",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of events to return"
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token for next page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query EPCIS events using filter parameters. Supports filtering by EPC, event type, time range, business step, disposition, and location."
+        },
+        {
+          "info": {
+            "name": "Capture EPCIS Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/epcis/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Capture one or more EPCIS events. Accepts ObjectEvent, AggregationEvent, TransactionEvent, TransformationEvent, and AssociationEvent types."
+        },
+        {
+          "info": {
+            "name": "Get Single EPCIS Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/epcis/events/:eventID",
+            "params": [
+              {
+                "name": "eventID",
+                "value": "",
+                "type": "path",
+                "description": "Unique EPCIS event identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a specific EPCIS event by its event ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

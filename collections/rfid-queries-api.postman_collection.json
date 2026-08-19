@@ -1,0 +1,933 @@
+{
+  "item": [
+    {
+      "id": "f8a257ac-e0a9-474b-aca6-22f916310aa5",
+      "name": "Queries",
+      "description": {
+        "content": "Named query management for subscription-based event filtering",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "704c5a3c-7d32-40d8-a129-88668b4d6575",
+          "name": "Create Named Query",
+          "request": {
+            "name": "Create Named Query",
+            "description": {
+              "content": "Create a named EPCIS query for subscription-based event notification",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"query\": \"<object>\",\n  \"subscriptionID\": \"<string>\",\n  \"reportIfEmpty\": \"<boolean>\",\n  \"initialRecordTime\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5e0a977-f121-4dd7-b4d4-a7032eae3096",
+              "name": "Named query created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query\": \"<object>\",\n  \"subscriptionID\": \"<string>\",\n  \"reportIfEmpty\": \"<boolean>\",\n  \"initialRecordTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Location",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49af2faa-3741-4cf9-a05e-7ecf5ed2f668",
+              "name": "Invalid query definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query\": \"<object>\",\n  \"subscriptionID\": \"<string>\",\n  \"reportIfEmpty\": \"<boolean>\",\n  \"initialRecordTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bea28d91-845c-4e70-8629-4f5f2ee8b7f5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query\": \"<object>\",\n  \"subscriptionID\": \"<string>\",\n  \"reportIfEmpty\": \"<boolean>\",\n  \"initialRecordTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93568353-8b7f-4b6e-87a4-894a872f9e21",
+          "name": "List Named Queries",
+          "request": {
+            "name": "List Named Queries",
+            "description": {
+              "content": "List all named queries registered for the authenticated user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "21bd91db-6d90-429b-bb0b-145cb4d2706a",
+              "name": "List of named queries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"<string>\",\n    \"query\": \"<object>\",\n    \"subscriptionID\": \"<string>\",\n    \"reportIfEmpty\": \"<boolean>\",\n    \"initialRecordTime\": \"<dateTime>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"query\": \"<object>\",\n    \"subscriptionID\": \"<string>\",\n    \"reportIfEmpty\": \"<boolean>\",\n    \"initialRecordTime\": \"<dateTime>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "349eeeef-197d-4378-bf97-56f74be1c035",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30eb77de-e19c-498f-a5b6-9bef8e2d3d15",
+          "name": "Get Named Query",
+          "request": {
+            "name": "Get Named Query",
+            "description": {
+              "content": "Retrieve details of a specific named query",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queries",
+                ":queryName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryName",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "91217522-30f3-4f3f-b674-93685f18328f",
+              "name": "Named query details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries",
+                    ":queryName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"query\": \"<object>\",\n  \"subscriptionID\": \"<string>\",\n  \"reportIfEmpty\": \"<boolean>\",\n  \"initialRecordTime\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4b30dd1-9382-481b-9559-1f565e469918",
+              "name": "Query not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries",
+                    ":queryName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e647253-2230-4388-ade6-0927060103f9",
+          "name": "Delete Named Query",
+          "request": {
+            "name": "Delete Named Query",
+            "description": {
+              "content": "Delete a named query and all its subscriptions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queries",
+                ":queryName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryName",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7832ec0c-aced-4c94-8549-37e8658c5c0a",
+              "name": "Query deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries",
+                    ":queryName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "945a6783-5131-49d8-8606-c4563757d6ff",
+              "name": "Query not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries",
+                    ":queryName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24f06bd5-5ee7-4a35-a917-fb5b327e19c5",
+          "name": "Execute Named Query",
+          "request": {
+            "name": "Execute Named Query",
+            "description": {
+              "content": "Execute a named query and return matching EPCIS events",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "queries",
+                ":queryName",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "nextPageToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryName",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1a98eb19-7ae3-4e34-ae14-514916c5c74c",
+              "name": "Events matching the named query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries",
+                    ":queryName",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"EPCISDocument\",\n  \"schemaVersion\": \"string\",\n  \"creationDate\": \"1955-08-16T21:23:46.709Z\",\n  \"epcisBody\": {\n    \"eventList\": [\n      {\n        \"type\": \"TransactionEvent\",\n        \"eventTime\": \"1950-03-10T17:07:19.044Z\",\n        \"action\": \"ADD\",\n        \"@context\": \"string\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"bizStep\": \"string\",\n        \"disposition\": \"string\",\n        \"readPoint\": {\n          \"id\": \"string\"\n        },\n        \"bizLocation\": {\n          \"id\": \"string\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"string\",\n            \"bizTransaction\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"bizTransaction\": \"string\"\n          }\n        ],\n        \"certificationInfo\": \"string\"\n      },\n      {\n        \"type\": \"ObjectEvent\",\n        \"eventTime\": \"1969-07-07T14:02:47.695Z\",\n        \"action\": \"OBSERVE\",\n        \"@context\": \"string\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"bizStep\": \"string\",\n        \"disposition\": \"string\",\n        \"readPoint\": {\n          \"id\": \"string\"\n        },\n        \"bizLocation\": {\n          \"id\": \"string\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"string\",\n            \"bizTransaction\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"bizTransaction\": \"string\"\n          }\n        ],\n        \"certificationInfo\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0724b3d-c7b6-4363-bb2c-a6caab77942e",
+              "name": "Query not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queries",
+                    ":queryName",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "EPCIS server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/epcis",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "611c3aed-a04a-4d5d-8c19-9d0de8117f0b",
+    "name": "EPCIS 2.0 REST Discovery Queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Electronic Product Code Information Services (EPCIS) 2.0 REST API, standardized by GS1, enables capture and query of supply chain visibility events associated with RFID and barcode-tagged objects. EPCIS events record the what (EPC/barcode), when (timestamp), where (read point and business location), why (business step and disposition), and how (sensor data) of tagged objects throughout their journey in the supply chain.",
+      "type": "text/plain"
+    }
+  }
+}

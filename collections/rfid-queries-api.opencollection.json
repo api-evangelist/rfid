@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "EPCIS 2.0 REST Discovery Queries API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Named Queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/epcis/queries",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all named queries registered for the authenticated user"
+        },
+        {
+          "info": {
+            "name": "Create Named Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/epcis/queries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a named EPCIS query for subscription-based event notification"
+        },
+        {
+          "info": {
+            "name": "Get Named Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/epcis/queries/:queryName",
+            "params": [
+              {
+                "name": "queryName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve details of a specific named query"
+        },
+        {
+          "info": {
+            "name": "Delete Named Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}/epcis/queries/:queryName",
+            "params": [
+              {
+                "name": "queryName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a named query and all its subscriptions"
+        },
+        {
+          "info": {
+            "name": "Execute Named Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/epcis/queries/:queryName/events",
+            "params": [
+              {
+                "name": "queryName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Execute a named query and return matching EPCIS events"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

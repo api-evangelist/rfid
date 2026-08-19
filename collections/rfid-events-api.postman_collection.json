@@ -1,0 +1,957 @@
+{
+  "item": [
+    {
+      "id": "da0947fc-c51e-4bb3-a714-b15d0be0ee1d",
+      "name": "Events",
+      "description": {
+        "content": "Capture and query EPCIS events (Object, Aggregation, Transaction, Transformation, Association)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dbdca295-9385-433a-a88a-108bbcca0264",
+          "name": "Capture EPCIS Events",
+          "request": {
+            "name": "Capture EPCIS Events",
+            "description": {
+              "content": "Capture one or more EPCIS events. Accepts ObjectEvent, AggregationEvent, TransactionEvent, TransformationEvent, and AssociationEvent types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"@context\": \"<array>\",\n  \"type\": \"EPCISDocument\",\n  \"schemaVersion\": \"<string>\",\n  \"creationDate\": \"<dateTime>\",\n  \"epcisBody\": {\n    \"eventList\": [\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"<string>\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"<string>\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36977300-fa4d-4520-8475-d6539a19e9f7",
+              "name": "Events captured successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@context\": \"<array>\",\n  \"type\": \"EPCISDocument\",\n  \"schemaVersion\": \"<string>\",\n  \"creationDate\": \"<dateTime>\",\n  \"epcisBody\": {\n    \"eventList\": [\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Location",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3f76f245-192d-4e7e-962b-ab743cae2307",
+              "name": "Invalid EPCIS document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@context\": \"<array>\",\n  \"type\": \"EPCISDocument\",\n  \"schemaVersion\": \"<string>\",\n  \"creationDate\": \"<dateTime>\",\n  \"epcisBody\": {\n    \"eventList\": [\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc3bd060-f66c-4460-b052-17cb2cefc4a0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@context\": \"<array>\",\n  \"type\": \"EPCISDocument\",\n  \"schemaVersion\": \"<string>\",\n  \"creationDate\": \"<dateTime>\",\n  \"epcisBody\": {\n    \"eventList\": [\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07a969fc-e540-4d6a-b5e9-ee7be6db5ecb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"@context\": \"<array>\",\n  \"type\": \"EPCISDocument\",\n  \"schemaVersion\": \"<string>\",\n  \"creationDate\": \"<dateTime>\",\n  \"epcisBody\": {\n    \"eventList\": [\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28f77594-30e4-4679-b0db-1718bf3e8665",
+          "name": "Query EPCIS Events",
+          "request": {
+            "name": "Query EPCIS Events",
+            "description": {
+              "content": "Query EPCIS events using filter parameters. Supports filtering by EPC, event type, time range, business step, disposition, and location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "eventType",
+                  "value": "<string>,<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "EQ_EPC",
+                  "value": "<string>",
+                  "description": "Filter by specific EPC value"
+                },
+                {
+                  "disabled": false,
+                  "key": "EQ_bizStep",
+                  "value": "<string>",
+                  "description": "Filter by business step URI"
+                },
+                {
+                  "disabled": false,
+                  "key": "EQ_disposition",
+                  "value": "<string>",
+                  "description": "Filter by disposition URI"
+                },
+                {
+                  "disabled": false,
+                  "key": "GE_eventTime",
+                  "value": "<dateTime>",
+                  "description": "Events at or after this time"
+                },
+                {
+                  "disabled": false,
+                  "key": "LT_eventTime",
+                  "value": "<dateTime>",
+                  "description": "Events before this time"
+                },
+                {
+                  "disabled": false,
+                  "key": "EQ_readPoint",
+                  "value": "<string>",
+                  "description": "Filter by read point URI"
+                },
+                {
+                  "disabled": false,
+                  "key": "EQ_bizLocation",
+                  "value": "<string>",
+                  "description": "Filter by business location URI"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxEventCount",
+                  "value": "<integer>",
+                  "description": "Maximum number of events to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextPageToken",
+                  "value": "<string>",
+                  "description": "Pagination token for next page"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "GS1-EPCIS-Version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9f42050e-6ec3-4ea3-8444-3ed161325f5f",
+              "name": "EPCIS events matching query criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventType",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "EQ_EPC",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_bizStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_disposition",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "GE_eventTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "LT_eventTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EQ_readPoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_bizLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxEventCount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "GS1-EPCIS-Version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "GS1-EPCIS-Version",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "description": "Token to retrieve next page of results",
+                  "key": "GS1-Next-Page-Token",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@context\": \"<array>\",\n  \"type\": \"EPCISDocument\",\n  \"schemaVersion\": \"<string>\",\n  \"creationDate\": \"<dateTime>\",\n  \"epcisBody\": {\n    \"eventList\": [\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"eventTime\": \"<dateTime>\",\n        \"action\": \"<string>\",\n        \"@context\": \"<string>\",\n        \"eventTimeZoneOffset\": \"+00:00\",\n        \"epcList\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bizStep\": \"<string>\",\n        \"disposition\": \"<string>\",\n        \"readPoint\": {\n          \"id\": \"<string>\"\n        },\n        \"bizLocation\": {\n          \"id\": \"<string>\"\n        },\n        \"bizTransactionList\": [\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"bizTransaction\": \"<string>\"\n          }\n        ],\n        \"sensorElementList\": [\n          \"<object>\",\n          \"<object>\"\n        ],\n        \"certificationInfo\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91aa8365-fa13-4641-ba9f-9f655b98a2e7",
+              "name": "Invalid query parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventType",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "EQ_EPC",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_bizStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_disposition",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "GE_eventTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "LT_eventTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EQ_readPoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_bizLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxEventCount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "GS1-EPCIS-Version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3359ed36-1a51-48c0-bfd9-1697aefa0fc6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "eventType",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "EQ_EPC",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_bizStep",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_disposition",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "GE_eventTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "LT_eventTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EQ_readPoint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "EQ_bizLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxEventCount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "GS1-EPCIS-Version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba5b3ebc-885e-4386-85d6-ad9f23f01c06",
+          "name": "Get Single EPCIS Event",
+          "request": {
+            "name": "Get Single EPCIS Event",
+            "description": {
+              "content": "Retrieve a specific EPCIS event by its event ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventID",
+                  "description": "(Required) Unique EPCIS event identifier"
+                },
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b1152ff-72c2-49cc-bb4c-a3007caad379",
+              "name": "EPCIS event details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventID",
+                      "description": "(Required) Unique EPCIS event identifier"
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"<string>\",\n  \"eventTime\": \"<dateTime>\",\n  \"action\": \"<string>\",\n  \"@context\": \"<string>\",\n  \"eventTimeZoneOffset\": \"+00:00\",\n  \"epcList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"bizStep\": \"<string>\",\n  \"disposition\": \"<string>\",\n  \"readPoint\": {\n    \"id\": \"<string>\"\n  },\n  \"bizLocation\": {\n    \"id\": \"<string>\"\n  },\n  \"bizTransactionList\": [\n    {\n      \"type\": \"<string>\",\n      \"bizTransaction\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"bizTransaction\": \"<string>\"\n    }\n  ],\n  \"sensorElementList\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"certificationInfo\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bf7e39e-f598-43a2-b087-ccee42c489d4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventID",
+                      "description": "(Required) Unique EPCIS event identifier"
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7345b95a-ab78-435b-bf73-3c18fb6c964d",
+              "name": "Event not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventID",
+                      "description": "(Required) Unique EPCIS event identifier"
+                    },
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "EPCIS server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/epcis",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "06f2dc54-bc6c-408d-b289-cd98f08c56e7",
+    "name": "EPCIS 2.0 REST Discovery Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Electronic Product Code Information Services (EPCIS) 2.0 REST API, standardized by GS1, enables capture and query of supply chain visibility events associated with RFID and barcode-tagged objects. EPCIS events record the what (EPC/barcode), when (timestamp), where (read point and business location), why (business step and disposition), and how (sensor data) of tagged objects throughout their journey in the supply chain.",
+      "type": "text/plain"
+    }
+  }
+}

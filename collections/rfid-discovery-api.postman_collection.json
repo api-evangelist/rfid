@@ -1,0 +1,125 @@
+{
+  "item": [
+    {
+      "id": "a353bac2-7049-4b28-8f06-ad49e5e61531",
+      "name": "Discovery",
+      "description": {
+        "content": "EPCIS service discovery and capabilities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9bdb3393-ba90-477c-ab53-b6a111cedf03",
+          "name": "Get Service Information",
+          "request": {
+            "name": "Get Service Information",
+            "description": {
+              "content": "Returns service capabilities and version information for the EPCIS endpoint including supported versions and features.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "serviceInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "EPCIS server host",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9802b1fd-37d9-457b-b83b-a472104ca8d1",
+              "name": "Service information and capabilities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "serviceInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "EPCIS server host",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@context\": \"string\",\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"epcisVersion\": \"string\",\n  \"epcisQueryMinVersion\": \"string\",\n  \"epcisQueryMaxVersion\": \"string\",\n  \"epcisCapture\": {},\n  \"epcisEvents\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "EPCIS server host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/epcis",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4a759768-a701-409a-983a-67716eb3a580",
+    "name": "EPCIS 2.0 REST Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Electronic Product Code Information Services (EPCIS) 2.0 REST API, standardized by GS1, enables capture and query of supply chain visibility events associated with RFID and barcode-tagged objects. EPCIS events record the what (EPC/barcode), when (timestamp), where (read point and business location), why (business step and disposition), and how (sensor data) of tagged objects throughout their journey in the supply chain.",
+      "type": "text/plain"
+    }
+  }
+}
