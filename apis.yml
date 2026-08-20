@@ -115,6 +115,8 @@ apis:
   humanURL: https://developer.zebra.com/data-services-rfid-developer-guide
   baseURL: https://api.zebra.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -125,6 +127,8 @@ apis:
   humanURL: https://developer.zebra.com/data-services-rfid-developer-guide
   baseURL: https://api.zebra.com
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
