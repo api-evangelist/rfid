@@ -106,6 +106,12 @@ apis:
   - EPCIS
   - Supply Chain
   - EPC
+  - Standards
+  tags_raw:
+  - GS1
+  - EPCIS
+  - Supply Chain
+  - EPC
   - Standard
   properties:
   - type: Documentation
