@@ -54,15 +54,18 @@ artifacts:
   json-structure/rfid-epcis-event-structure.json:
     method: unknown
     evidence: no authorship recorded
+  openapi/_original/rfid-epcis-openapi.yml:
+    method: harvested
+    evidence: fetched from the provider as-is; byte-identical to the source
   openapi/rfid-discovery-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/rfid-events-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/rfid-queries-api-openapi.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   plans/rfid-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
