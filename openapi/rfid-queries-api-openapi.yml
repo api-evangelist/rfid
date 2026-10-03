@@ -136,22 +136,6 @@ paths:
           description: Query not found
 components:
   schemas:
-    NamedQuery:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Unique name for the query
-        query:
-          type: object
-          description: Query parameters
-        subscriptionID:
-          type: string
-        reportIfEmpty:
-          type: boolean
-        initialRecordTime:
-          type: string
-          format: date-time
     EPCISEventList:
       type: object
       properties:
@@ -243,6 +227,22 @@ components:
       - type
       - eventTime
       - action
+    NamedQuery:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique name for the query
+        query:
+          type: object
+          description: Query parameters
+        subscriptionID:
+          type: string
+        reportIfEmpty:
+          type: boolean
+        initialRecordTime:
+          type: string
+          format: date-time
   securitySchemes:
     BearerAuth:
       type: http
