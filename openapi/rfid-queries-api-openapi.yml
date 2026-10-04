@@ -136,26 +136,6 @@ paths:
           description: Query not found
 components:
   schemas:
-    EPCISEventList:
-      type: object
-      properties:
-        '@context':
-          type: array
-        type:
-          type: string
-          default: EPCISDocument
-        schemaVersion:
-          type: string
-        creationDate:
-          type: string
-          format: date-time
-        epcisBody:
-          type: object
-          properties:
-            eventList:
-              type: array
-              items:
-                $ref: '#/components/schemas/EPCISEvent'
     EPCISEvent:
       type: object
       properties:
@@ -227,6 +207,26 @@ components:
       - type
       - eventTime
       - action
+    EPCISEventList:
+      type: object
+      properties:
+        '@context':
+          type: array
+        type:
+          type: string
+          default: EPCISDocument
+        schemaVersion:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+        epcisBody:
+          type: object
+          properties:
+            eventList:
+              type: array
+              items:
+                $ref: '#/components/schemas/EPCISEvent'
     NamedQuery:
       type: object
       properties:
