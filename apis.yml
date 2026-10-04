@@ -184,6 +184,9 @@ useCases:
   - name: Access Control
     description: RFID-based building access, parking management, and visitor management
 common:
+  - type: CapabilityMap
+    url: capabilities/rfid-capability-edges.yml
+    name: RFID Business Capability Map
   - type: AgenticAccess
     url: agentic-access/rfid-agentic-access.yml
   - type: DomainSecurity

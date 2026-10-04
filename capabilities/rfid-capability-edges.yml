@@ -1,0 +1,26 @@
+slug: rfid
+provider: RFID
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Events
+  spec_file: rfid-events-api-openapi.yml
+  capability_id: BC-520
+  capability_id_l1: BC-520
+  capability_name: Supply Chain Management
+  confidence: 0.7
+  evidence: POST /events  captureEvents  Capture EPCIS Events; "enables capture and query of supply chain
+    visibility events associated with RFID and barcode-tagged objects"
+  reason: Capturing and querying EPCIS events records the what/when/where/why of tagged goods through
+    the supply chain, i.e. supply chain visibility and traceability. The L2 is left null because the surface
+    spans logistics execution, inventory and risk/visibility without naming one.
