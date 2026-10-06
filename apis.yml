@@ -52,7 +52,7 @@ tags_raw:
   - EPCIS
 url: https://raw.githubusercontent.com/api-evangelist/rfid/refs/heads/main/apis.yml
 created: '2025-01-01'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: rfid:zebra-rfid-data-services
@@ -184,6 +184,8 @@ useCases:
   - name: Access Control
     description: RFID-based building access, parking management, and visitor management
 common:
+  - url: https://developer.zebra.com/rss.xml
+    type: BlogRSS
   - type: CapabilityMap
     url: capabilities/rfid-capability-edges.yml
     name: RFID Business Capability Map
