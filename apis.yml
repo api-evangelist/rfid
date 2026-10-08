@@ -184,6 +184,12 @@ useCases:
   - name: Access Control
     description: RFID-based building access, parking management, and visitor management
 common:
+  - type: Plans
+    url: plans/rfid-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/rfid-rate-limits.yml
+  - type: FinOps
+    url: finops/rfid-finops.yml
   - url: https://developer.zebra.com/rss.xml
     type: BlogRSS
   - type: CapabilityMap
