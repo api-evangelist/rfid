@@ -9,6 +9,9 @@ artifacts:
   authentication/rfid-authentication.yml:
     method: derived
     evidence: declared in the artifact
+  capabilities/rfid-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/rfid-discovery-api.opencollection.json:
     method: derived
     evidence: openapi/rfid-discovery-api
